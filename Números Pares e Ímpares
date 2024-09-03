@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class numerosParesImpares {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Pedir ao usuário dois números inteiros
+        System.out.print("Digite o primeiro número inteiro: ");
+        int numero1 = scanner.nextInt();
+
+        System.out.print("Digite o segundo número inteiro: ");
+        int numero2 = scanner.nextInt();
+
+        // Condição que o primeiro número seja o menor
+        if (numero1 > numero2) {
+            int temp = numero1;
+            numero1 = numero2;
+            numero2 = temp;
+        }
+
+        System.out.println("Números pares e ímpares entre " + numero1 + " e " + numero2 + ":");
+
+        // Printar os números pares e ímpares usando for para percorrer os números
+        for (int i = numero1; i <= numero2; i++) {
+            if (i % 2 == 0) {
+                System.out.println(i + " é par.");
+            } else {
+                System.out.println(i + " é ímpar.");
+            }
+        }
+
+        scanner.close();
+    }
+}
