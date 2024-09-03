@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class calculoINSS {
+    public static void main(String[] args) {
+        // Criar um objeto Scanner para receber entradas do usuário
+        Scanner scanner = new Scanner(System.in);
+
+        // Pedir ao usuário o salário bruto
+        System.out.print("Digite seu salário bruto: ");
+        double salarioBruto = scanner.nextDouble();
+
+        /* Até R$ 1.320,00: 7,5%
+        De R$ 1.320,01 a R$ 2.571,29: 9%
+        De R$ 2.571,30 a R$ 3.856,94: 12%
+        De R$ 3.856,95 a R$ 7.507,49: 14% */
+
+        // Inicializar as variáveis
+        double contribuicaoINSS = 0.0;
+
+        // Cálculo progressivo do INSS com base na tabela atualizada de 2024
+        if (salarioBruto <= 1320.00) {
+            contribuicaoINSS = salarioBruto * 0.075;
+        } else if (salarioBruto <= 2571.29) {
+            contribuicaoINSS = (1320.00 * 0.075) + ((salarioBruto - 1320.00) * 0.09);
+        } else if (salarioBruto <= 3856.94) {
+            contribuicaoINSS = (1320.00 * 0.075) + ((2571.29 - 1320.00) * 0.09) + ((salarioBruto - 2571.29) * 0.12);
+        } else if (salarioBruto <= 7507.49) {
+            contribuicaoINSS = (1320.00 * 0.075) + ((2571.29 - 1320.00) * 0.09) +
+                    ((3856.94 - 2571.29) * 0.12) + ((salarioBruto - 3856.94) * 0.14);
+        } else {
+            // Cálculo para salários acima de R$ 7507,49
+            contribuicaoINSS = (1320.00 * 0.075) + ((2571.29 - 1320.00) * 0.09) +
+                    ((3856.94 - 2571.29) * 0.12) + ((7507.49 - 3856.94) * 0.14);
+        }
+
+        // Calcular o salário líquido
+        double salarioLiquido = salarioBruto - contribuicaoINSS;
+
+        // Printar os resultados
+        System.out.printf("Valor da contribuição ao INSS: R$ %.2f%n", contribuicaoINSS);
+        System.out.printf("Salário líquido: R$ %.2f%n", salarioLiquido);
+
+        scanner.close();
+    }
+}
