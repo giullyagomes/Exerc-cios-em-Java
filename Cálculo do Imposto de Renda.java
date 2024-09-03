@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class calculoImpostoDeRenda {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Pedir ao usuário o salário bruto
+        System.out.print("Digite seu salário bruto: ");
+        double salarioBruto = scanner.nextDouble();
+
+        // Inicializar as variáveis
+        double impostoRenda = 0.0;
+        double deducao = 0.0;
+
+        /* Até R$ 2.112,00: isento
+        De R$ 2.112,01 até R$ 2.826,65: 7,5% (dedução de R$ 169,44)
+        De R$ 2.826,66 até R$ 3.751,05: 15% (dedução de R$ 381,44)
+        De R$ 3.751,06 até R$ 4.664,68: 22,5% (dedução de R$ 662,77)
+        Acima de R$ 4.664,68: 27,5% (dedução de R$ 896,00) */
+
+        // Cálculo do IRRF com base nas faixas de salário atualizada - 2024
+        if (salarioBruto <= 2112.00) {
+            impostoRenda = 0.0;  // Isento
+        } else if (salarioBruto <= 2826.65) {
+            impostoRenda = salarioBruto * 0.075;
+            deducao = 169.44;
+        } else if (salarioBruto <= 3751.05) {
+            impostoRenda = salarioBruto * 0.15;
+            deducao = 381.44;
+        } else if (salarioBruto <= 4664.68) {
+            impostoRenda = salarioBruto * 0.225;
+            deducao = 662.77;
+        } else {
+            impostoRenda = salarioBruto * 0.275;
+            deducao = 896.00;
+        }
+
+        // Subtrair a dedução do imposto calculado
+        impostoRenda -= deducao;
+
+        // Condição para o imposto não ser negativo
+        if (impostoRenda < 0) {
+            impostoRenda = 0.0;
+        }
+
+        // Calcular o salário líquido
+        double salarioLiquido = salarioBruto - impostoRenda;
+
+        // Printar os resultados
+        System.out.printf("Valor do imposto de renda retido na fonte: R$ %.2f%n", impostoRenda);
+        System.out.printf("Salário líquido: R$ %.2f%n", salarioLiquido);
+
+
+        scanner.close();
+    }
+}
