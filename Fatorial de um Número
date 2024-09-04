@@ -4,22 +4,19 @@ public class fatorial {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Solicitar ao usuário um número inteiro positivo
         System.out.print("Digite um número inteiro positivo: ");
         int numero = scanner.nextInt();
 
-        // Inicializar as variáveis
         int fatorial = 1;
         int i = numero;
 
-        // Calcular o fatorial usando o loop while
         while (i > 0) {
             fatorial *= i;
             i--;
         }
 
-        // Printar o resultado
         System.out.println("O fatorial de " + numero + " é: " + fatorial);
+
 
         scanner.close();
     }
